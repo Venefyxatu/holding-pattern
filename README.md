@@ -6,9 +6,9 @@ A small script that will let you either practice your holding pattern entry mode
 This script is distributed in the hope that it will be useful but without implied or expressed warranties, including, but not limited to, any implied warranty of fitness for a particular purpose.
 
 ***************************************************************
-*                                                             *
-*    DO NOT USE FOR REAL WORLD AVIATION. Seriously. Don't.    *
-*                                                             *
+
+     DO NOT USE FOR REAL WORLD AVIATION. Seriously. Don't.
+
 ***************************************************************
 
 Quiz mode
