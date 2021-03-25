@@ -7,7 +7,7 @@ This script is distributed in the hope that it will be useful but without implie
 
 ***************************************************************
 
-     DO NOT USE FOR REAL WORLD AVIATION. Seriously. Don't.
+DO NOT USE FOR REAL WORLD AVIATION. Seriously. Don't.
 
 ***************************************************************
 
@@ -52,11 +52,6 @@ Choices with regards to edge cases:
 
 When approaching on a course that is exactly on the edge for a direct entry, the script will choose a direct entry (and the quiz will expect it as well).
 When approaching on a course that is exactly the reciprocal of the holding pattern radial, the script will choose a parallel entry (and the quiz will expect it as well).
-
-Limitations
------------
-
-At the time of writing, only right turns are supported. As soon as I have some time and feel like it, I'll add support for left turns as well.
 
 
 Testing

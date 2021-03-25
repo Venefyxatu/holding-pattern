@@ -22,12 +22,21 @@ def get_reciprocal(degrees):
 
 
 def get_parallel_limits(holding_radial, turn):
-    if holding_radial < 71:
-        direct_radial = holding_radial + 290
-    else:
-        direct_radial = holding_radial - 70
+    if turn == Turns.RIGHT:
+        if holding_radial < 71:
+            direct_radial = holding_radial + 290
+        else:
+            direct_radial = holding_radial - 70
 
-    direct_reciprocal = get_reciprocal(direct_radial)
+        direct_reciprocal = get_reciprocal(direct_radial)
+    else:
+        if holding_radial < 291:
+            direct_reciprocal = holding_radial + 70
+        else:
+            direct_reciprocal = holding_radial - 290
+
+        direct_radial = get_reciprocal(direct_reciprocal)
+
 
     return direct_radial, direct_reciprocal
 
@@ -59,11 +68,17 @@ def get_entry(holding_radial, turn, direct_radial, direct_reciprocal, inbound_co
     elif is_clockwise_between(direct_radial, direct_reciprocal, inbound_course):
         return Entries.DIRECT
     elif is_clockwise_between(direct_reciprocal, holding_reciprocal, inbound_course):
-        return Entries.TEARDROP
+        if turn == Turns.RIGHT:
+            return Entries.TEARDROP
+        else:
+            return Entries.PARALLEL
     elif is_clockwise_between(holding_reciprocal, direct_radial, inbound_course):
-        return Entries.PARALLEL
+        if turn == Turns.RIGHT:
+            return Entries.PARALLEL
+        else:
+            return Entries.TEARDROP
     else:
-        raise ValueError(f'Unhandled edge case: {holding_radial}, {turn}, {direct_radial}, {direct_reciprocal}, {inbound_course}')
+        raise ValueError(f'Unhandled edge case: {holding_radial}, {turn.value}, {direct_radial}, {direct_reciprocal}, {inbound_course}')
 
 
 def quiz(args):
@@ -73,9 +88,7 @@ def quiz(args):
 
         holding_radial = random.randint(1, 360)
 
-        turn = random.choice([t.value for t in Turns])
-        # TODO: remove when left turns are supported
-        turn = Turns.RIGHT.value
+        turn = random.choice([t for t in Turns])
 
         direct_radial, direct_reciprocal = get_parallel_limits(holding_radial, turn)
 
@@ -86,7 +99,7 @@ def quiz(args):
         answer = None
         while answer not in [e.value for e in Entries]:
             print(80 * '-')
-            print(f'Choose entry method for holding on radial {holding_radial} with {turn} turn and arriving on course {inbound_course}.')
+            print(f'Choose entry method for holding on radial {holding_radial} with {turn.value} turn and arriving on course {inbound_course}.')
             for entry in Entries:
                 print(f'  {entry.value} {entry.name}')
 
@@ -104,9 +117,6 @@ def quiz(args):
 
 
 def calc(args):
-    if args.turn == Turns.LEFT.value:
-        raise NotImplementedError('For now, only right-hand turns are supported')
-
     direct_radial, direct_reciprocal = get_parallel_limits(args.holding_radial, args.turn)
 
     entry = get_entry(args.holding_radial, args.turn, direct_radial, direct_reciprocal, args.inbound)
@@ -126,10 +136,12 @@ def main():
     calc_parser = subparsers.add_parser('calc', help='Calculator mode')
     calc_parser.add_argument('--inbound', type=int, required=True, help='Inbound course to the holding point')
     calc_parser.add_argument('--holding-radial', type=int, required=True, help='Hold radial as given by ATC or plate')
-    calc_parser.add_argument('--turn', type=str, default=Turns.RIGHT, choices=[t.value for t in Turns], help='Turn direction (defaults to right)')
+    calc_parser.add_argument('--turn', type=str, default=Turns.RIGHT.value, choices=[t.value for t in Turns], help='Turn direction (defaults to right)')
     calc_parser.set_defaults(func=calc)
 
     args = parser.parse_args()
+    if hasattr(args, 'turn'):
+        args.turn = Turns[args.turn.upper()]
     args.func(args)
 
 
