@@ -11,6 +11,31 @@ DO NOT USE FOR REAL WORLD AVIATION. Seriously. Don't.
 
 ***************************************************************
 
+
+Using on Windows
+================
+
+The release zipfile includes everything you'll need.
+
+  1. download and extract (the rest of this mini-guide assumes you've extracted in your Downloads directory).
+
+  2. Start a command prompt:
+
+        Start -> Run -> cmd<enter> or, 
+        on Windows 10: Start -> cmd<enter>
+
+  3. Navigate to the extracted folder.
+
+        cd Downloads\holding-pattern-win\
+
+  4. Run the applicaton. The --help argument will give a basic explanation of your options (but see below for a more detailed explanation)
+
+        python.exe main.py --help
+
+
+What it does
+============
+
 Quiz mode
 ---------
 
