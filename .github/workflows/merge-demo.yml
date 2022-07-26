@@ -8,4 +8,7 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - uses: ./.github/workflows/actions-demo
+      - name: List files in the workflows dir
+        run: |
+          ls ${{ github.workspace }}/.github/workflows/
+      - uses: ./.github/workflows/actions-demo.yml
