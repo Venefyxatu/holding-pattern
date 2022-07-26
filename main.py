@@ -37,7 +37,6 @@ def get_parallel_limits(holding_radial, turn):
 
         direct_radial = get_reciprocal(direct_reciprocal)
 
-
     return direct_radial, direct_reciprocal
 
 
