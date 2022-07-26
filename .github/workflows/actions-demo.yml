@@ -33,7 +33,7 @@ jobs:
         continue-on-error: true
       - name: Run pytest
         run: |
-          venv/bin/pytest --junit-xml=testresults.xml --cov=main.py --cov-report=html --cov-fail-under=90 test.py
+          venv/bin/pytest --junit-xml=testresults.xml --cov=main --cov-report=html --cov-fail-under=90 test.py
       - name: Upload pytest results
         uses: actions/upload-artifact@v3
         with:
