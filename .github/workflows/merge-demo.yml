@@ -4,5 +4,4 @@ on:
 
 jobs:
   actual-reuse:
-    runs-on: ubuntu-latest
     uses: ./.github/workflows/actions-demo.yml
