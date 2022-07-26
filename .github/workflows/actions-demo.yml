@@ -1,7 +1,7 @@
 name: Github Actions demo
 on:
-  - push:
-  - workflow_call:
+  push
+  workflow_call:
 jobs:
   Demo-github-actions:
     runs-on: ubuntu-latest
