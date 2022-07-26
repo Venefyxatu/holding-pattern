@@ -3,13 +3,6 @@ on:
   pull_request:
 
 jobs:
-  Reuse-github-actions-demo:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - name: List files in the workflows dir
-        run: |
-          ls ${{ github.workspace }}/.github/workflows/
   actual-reuse:
+    runs-on: ubuntu-latest
     uses: ./.github/workflows/actions-demo.yml
