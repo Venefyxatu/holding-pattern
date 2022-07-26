@@ -1,0 +1,14 @@
+name: Github Actions demo
+on: [push]
+jobs:
+  Demo-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job is running on ${{ runner.os }}"
+      - run: echo "Running from branch ${{ github.ref }} in repository ${{ github.repository }}"
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "Job status is ${{ job.status }}"
