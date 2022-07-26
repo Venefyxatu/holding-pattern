@@ -14,8 +14,6 @@ jobs:
       - run: echo "Job status is ${{ job.status }}"
       - name: Install virtualenv
         run: |
-          python3 -m ensurepip
-          pip3 install --no-cache --upgrade pip setuptools
           pip3 install virtualenv
       - name: Set up virtualenv
         run: |
