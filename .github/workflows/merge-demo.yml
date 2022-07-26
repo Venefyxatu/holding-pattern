@@ -1,0 +1,9 @@
+name: Merge Demo
+on:
+  pull_request:
+
+jobs:
+  Reuse-github-actions-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/actions-demo.yml
