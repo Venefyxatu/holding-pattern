@@ -1,6 +1,6 @@
 name: Github Actions demo
 on:
-  push
+  push:
   workflow_call:
 jobs:
   Demo-github-actions:
