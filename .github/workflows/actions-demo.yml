@@ -23,9 +23,9 @@ jobs:
         run: |
           virtualenv --python=python3 venv
           venv/bin/pip install -r requirements.txt
-      - name: Run pep8
+      - name: Run pycodestyle
         run: |
-          venv/bin/pep8 --max-line-length=120 main.py
+          venv/bin/pycodestyle --max-line-length=120 main.py
         continue-on-error: true
       - name: Run pylint
         run: |
