@@ -17,17 +17,29 @@ jobs:
       - run: echo "Job status is ${{ job.status }}"
       - name: Install virtualenv
         run: |
+          pip3 install --upgrade pip
           pip3 install virtualenv
       - name: Set up virtualenv
         run: |
           virtualenv --python=python3 venv
           venv/bin/pip install -r requirements.txt
-      - name: Run tests
+      - name: Run pylint
+      - name: Run pytest
         run: |
-          venv/bin/pytest --junit-xml=testresults.xml test.py
+          venv/bin/pytest --junit-xml=testresults.xml --cov=main.py --cov-report=html --cov-fail-under=90 test.py
+      - name: Run pep8
+        run: |
+          venv/bin/pep8 --max-line-length=120 main.py
+        continue-on-error: true
+      - name: Run pylint
+        run: |
+          venv/bin/pylint --max-line-length=120 main.py
+        continue-on-error: true
       - name: Upload pytest results
         uses: actions/upload-artifact@v3
         with:
           name: testresults.xml
-          path: testresults.xml
+          path: |
+            testresults.xml
+            htmlcov
         if: ${{ always() }}
