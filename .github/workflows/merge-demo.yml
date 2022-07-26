@@ -11,4 +11,4 @@ jobs:
       - name: List files in the workflows dir
         run: |
           ls ${{ github.workspace }}/.github/workflows/
-      - uses: ./.github/workflows/actions-demo.yml
+      - uses: ./actions-demo.yml
