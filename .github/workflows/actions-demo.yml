@@ -34,10 +34,10 @@ jobs:
       - name: Run pytest
         run: |
           venv/bin/pytest --junit-xml=testresults.xml --cov=main --cov-report=html --cov-fail-under=90 test.py
-      - name: Upload pytest results
+      - name: Upload testresults and coverage
         uses: actions/upload-artifact@v3
         with:
-          name: testresults.xml
+          name: testresults
           path: |
             testresults.xml
             htmlcov
