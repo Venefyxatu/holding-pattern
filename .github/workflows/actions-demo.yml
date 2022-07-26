@@ -23,7 +23,6 @@ jobs:
         run: |
           virtualenv --python=python3 venv
           venv/bin/pip install -r requirements.txt
-      - name: Run pylint
       - name: Run pytest
         run: |
           venv/bin/pytest --junit-xml=testresults.xml --cov=main.py --cov-report=html --cov-fail-under=90 test.py
