@@ -8,4 +8,4 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - uses: ./.github/workflows/actions-demo.yml
+      - uses: ./.github/workflows/actions-demo
