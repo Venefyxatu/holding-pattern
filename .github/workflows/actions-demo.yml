@@ -25,3 +25,9 @@ jobs:
       - name: Run tests
         run: |
           venv/bin/pytest --junit-xml=testresults.xml test.py
+      - name: Upload pytest results
+        uses: actions/upload-artifact@v3
+        with:
+          name: testresults.xml
+          path: testresults.xml
+        if: ${{ always() }}
