@@ -167,4 +167,4 @@ def test_get_entry(holding_radial, turn, direct_radial, direct_reciprocal, inbou
                              (251, 71, 252, False),
                          ])
 def test_is_clockwise_between(radial_a, radial_b, course, result):
-    assert is_clockwise_between(radial_a, radial_b, course) is result
+    assert is_clockwise_between(radial_a, radial_b, course) is not result
