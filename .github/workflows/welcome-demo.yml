@@ -1,0 +1,9 @@
+name: Issues test
+
+on: [issues]
+
+jobs:
+  welcome-new-user:
+    runs-on: ubuntu-latest
+    steps:
+      
