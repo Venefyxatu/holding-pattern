@@ -10,7 +10,6 @@ jobs:
     needs: actual-reuse
     steps:
       - run: echo "Job status is ${{ job.status }}"
-      - run: sleep 5
   report-revision:
     runs-on: ubuntu-latest
     needs: report-status
