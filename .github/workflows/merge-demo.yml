@@ -5,3 +5,9 @@ on:
 jobs:
   actual-reuse:
     uses: ./.github/workflows/actions-demo.yml
+  report-status:
+    steps:
+      - run: echo "Job status is ${{ job.status }}"
+  report-revision:
+    steps:
+      - run: echo "Running from branch ${{ github.ref }} in repository ${{ github.repository }}"
