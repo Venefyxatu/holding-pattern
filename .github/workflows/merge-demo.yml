@@ -6,8 +6,10 @@ jobs:
   actual-reuse:
     uses: ./.github/workflows/actions-demo.yml
   report-status:
+    runs-on: ubuntu-latest
     steps:
       - run: echo "Job status is ${{ job.status }}"
   report-revision:
+    runs-on: ubuntu-latest
     steps:
       - run: echo "Running from branch ${{ github.ref }} in repository ${{ github.repository }}"
