@@ -1,0 +1,29 @@
+name: Merge Demo
+on:
+  pull_request:
+
+jobs:
+  use-action:
+    runs-on: Ubuntu-latest
+    steps:
+      - name: First interaction
+        uses: actions/first-interaction@v1.1.0
+        with:
+          # Token for the repository. Can be passed in using {{ secrets.GITHUB_TOKEN }}
+          repo-token: "{{ secrets.GITHUB_TOKEN }}"
+          # Comment to post on an individual's first issue
+          issue-message: "Welcome to the project!"
+          # Comment to post on an individual's first pull request
+          pr-message: "Thank you for your PR!"
+  actual-reuse:
+    uses: ./.github/workflows/actions-demo.yml
+  report-status:
+    runs-on: ubuntu-latest
+    needs: actual-reuse
+    steps:
+      - run: echo "Job status is ${{ job.status }}"
+  report-revision:
+    runs-on: ubuntu-latest
+    needs: report-status
+    steps:
+      - run: echo "Running from branch ${{ github.ref }} in repository ${{ github.repository }}"

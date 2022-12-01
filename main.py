@@ -37,7 +37,6 @@ def get_parallel_limits(holding_radial, turn):
 
         direct_radial = get_reciprocal(direct_reciprocal)
 
-
     return direct_radial, direct_reciprocal
 
 
@@ -52,7 +51,8 @@ def is_clockwise_between(radial_a, radial_b, course):
 
     if radial_a < radial_b and reciprocal_course in range(radial_a, radial_b + 1):
         return True
-    elif radial_a > radial_b and (reciprocal_course in range(radial_a, 360 + 1) or reciprocal_course in range(1, radial_b + 1)):
+    elif radial_a > radial_b and (reciprocal_course in range(radial_a, 360 + 1) or
+                                  reciprocal_course in range(1, radial_b + 1)):
         return True
     else:
         return False
@@ -78,7 +78,8 @@ def get_entry(holding_radial, turn, direct_radial, direct_reciprocal, inbound_co
         else:
             return Entries.TEARDROP
     else:
-        raise ValueError(f'Unhandled edge case: {holding_radial}, {turn.value}, {direct_radial}, {direct_reciprocal}, {inbound_course}')
+        raise ValueError(f'''Unhandled edge case: {holding_radial}, {turn.value}, {direct_radial}, '''
+                         f'''{direct_reciprocal}, {inbound_course}''')
 
 
 def quiz(args):
@@ -99,7 +100,8 @@ def quiz(args):
         answer = None
         while answer not in [e.value for e in Entries]:
             print(80 * '-')
-            print(f'Choose entry method for holding on radial {holding_radial} with {turn.value} turn and arriving on course {inbound_course}.')
+            print(f'''Choose entry method for holding on radial {holding_radial} with {turn.value} turn '''
+                  f'''and arriving on course {inbound_course}.''')
             for entry in Entries:
                 print(f'  {entry.value} {entry.name}')
 
@@ -136,7 +138,8 @@ def main():
     calc_parser = subparsers.add_parser('calc', help='Calculator mode')
     calc_parser.add_argument('--inbound', type=int, required=True, help='Inbound course to the holding point')
     calc_parser.add_argument('--holding-radial', type=int, required=True, help='Hold radial as given by ATC or plate')
-    calc_parser.add_argument('--turn', type=str, default=Turns.RIGHT.value, choices=[t.value for t in Turns], help='Turn direction (defaults to right)')
+    calc_parser.add_argument('--turn', type=str, default=Turns.RIGHT.value, choices=[t.value for t in Turns],
+                             help='Turn direction (defaults to right)')
     calc_parser.set_defaults(func=calc)
 
     args = parser.parse_args()
